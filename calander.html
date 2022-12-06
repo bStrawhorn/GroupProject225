@@ -1,42 +1,17 @@
+<!DOCTYPE html>
 <html>
-<div id='calendar'></div>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+  <head>
+    <title>Hello</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="css/calander.css"/>
+    <link rel="stylesheet" href="css/theme.css"/>
+  </head>
+  <body>
+    <div id="caleandar">
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
+    </div>
 
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    headerToolbar: {
-      center: 'addEventButton'
-    },
-    customButtons: {
-      addEventButton: {
-        text: 'add event...',
-        click: function() {
-          var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-          var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-          if (!isNaN(date.valueOf())) { // valid?
-            calendar.addEvent({
-              title: 'dynamic event',
-              start: date,
-              allDay: true
-            });
-            alert('Great. Now, update your database...');
-          } else {
-            alert('Invalid date.');
-          }
-        }
-      }
-    }
-  });
-
-  calendar.render();
-});
-</script>
-
-
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/test.js"></script>
+  </body>
 </html>
