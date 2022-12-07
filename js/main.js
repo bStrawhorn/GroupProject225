@@ -9,7 +9,7 @@ var Calendar = function(model, options, date){
       DateTimeShow: true,
       DateTimeFormat: 'mmm, yyyy',
       DatetimeLocation: '',
-      EventClick: '',
+      EventClick: false,
       EventTargetWholeDay: false,
       DisabledDays: [],
       ModelChange: model
@@ -204,39 +204,18 @@ var Calendar = function(model, options, date){
           var toDate = new Date(calendar.Selected.Year, calendar.Selected.Month, (i+1));
           if(evDate.getTime() == toDate.getTime()){
             number.className += " eventday";
-            var title = document.createElement('span');
-            title.className += "cld-title";
-            if(typeof calendar.Model[n].Link == 'function' || calendar.Options.EventClick){
+            var name = document.createElement('span');
+            name.className += "cld-name";
+            if(typeof calendar.Model[n].name == 'function' || calendar.Options.EventClick){
               var a = document.createElement('a');
               a.setAttribute('href', '#');
-              a.innerHTML += calendar.Model[n].Title;
-              if(calendar.Options.EventClick){
-                var z = calendar.Model[n].Link;
-                if(typeof calendar.Model[n].Link != 'string'){
-                    a.addEventListener('click', calendar.Options.EventClick.bind.apply(calendar.Options.EventClick, [null].concat(z)) );
-                    if(calendar.Options.EventTargetWholeDay){
-                      day.className += " clickable";
-                      day.addEventListener('click', calendar.Options.EventClick.bind.apply(calendar.Options.EventClick, [null].concat(z)) );
-                    }
-                }else{
-                  a.addEventListener('click', calendar.Options.EventClick.bind(null, z) );
-                  if(calendar.Options.EventTargetWholeDay){
-                    day.className += " clickable";
-                    day.addEventListener('click', calendar.Options.EventClick.bind(null, z) );
-                  }
-                }
-              }else{
-                a.addEventListener('click', calendar.Model[n].Link);
-                if(calendar.Options.EventTargetWholeDay){
-                  day.className += " clickable";
-                  day.addEventListener('click', calendar.Model[n].Link);
-                }
-              }
-              title.appendChild(a);
+              a.innerHTML += calendar.Model[n].name;
+              
+
             }else{
-              title.innerHTML += '<a href="' + calendar.Model[n].Link + '">' + calendar.Model[n].Title + '</a>';
+              name.innerHTML += '<a href="'+'void(null)"'+' onmouseover="'+'showPos(event, \'test.\');">' + calendar.Model[n].name + '</a>';
             }
-            number.appendChild(title);
+            number.appendChild(name);
           }
         }
         day.appendChild(number);
@@ -274,7 +253,7 @@ var Calendar = function(model, options, date){
       mainSection.innerHTML += '<style>.cld-main{color:' + calendar.Options.Color + ';}</style>';
     }
     if(calendar.Options.LinkColor){
-      mainSection.innerHTML += '<style>.cld-title a{color:' + calendar.Options.LinkColor + ';}</style>';
+      mainSection.innerHTML += '<style>.cld-name a{color:' + calendar.Options.LinkColor + ';}</style>';
     }
     element.appendChild(mainSection);
   
@@ -292,3 +271,24 @@ var Calendar = function(model, options, date){
     var obj = new Calendar(data, settings);
     createCalendar(obj, el);
   }
+  function showPos(event, text) {
+    var el, x, y;
+    
+    el = document.getElementById('PopUp');
+    if (window.event) {
+    x = window.event.clientX + document.documentElement.scrollLeft
+    + document.body.scrollLeft;
+    y = window.event.clientY + document.documentElement.scrollTop +
+    + document.body.scrollTop;
+    }
+    else {
+    x = event.clientX + window.scrollX;
+    y = event.clientY + window.scrollY;
+    }
+    x -= 2; y -= 2;
+    y = y+15
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+    el.style.display = "block";
+    document.getElementById('PopUpText').innerHTML = text;
+    }
