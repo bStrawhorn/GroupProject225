@@ -1,5 +1,6 @@
 .cld-main{
-  width: 900px;
+  width: auto;
+  height:auto;
 }
 .cld-main a{
   color: #7B00FF;
@@ -37,9 +38,7 @@
   .cld-fwd{
     float: right;
   }
-    .cld-nav svg:hover{
 
-    }
 .cld-labels, .cld-days{
   padding-left: 0;
 }
@@ -75,7 +74,7 @@
       margin: 0;
       text-align: left;
     }
-      .cld-title{
+      .cld-name{
         font-size: 10px;
         display: block;
         margin: 0;
@@ -89,6 +88,4 @@
       }
       .cld-number.eventday:hover{
         background: #eee;
-      }
-      .today .cld-number.eventday:hover{
       }

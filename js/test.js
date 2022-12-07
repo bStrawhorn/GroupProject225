@@ -1,7 +1,9 @@
+testdate=new Date(2022,11,24)
+
 var events = [
-    {'Date': new Date(2022, 11, 24), 'Title': 'Christmas Eve.'},
-    {'Date': new Date(2022, 11, 25), 'Title': 'Christmas.', },
-    {'Date': new Date(2022, 11, 27), 'Title': 'Birthday.', },
+    {'Date': testdate, 'name': 'Christmas Eve', },
+    {'Date': new Date(2022, 11, 25), 'name': 'Christmas.', },
+    {'Date': new Date(2022, 11, 27), 'name': 'Birthday.', },
   ];
   var settings = {};
   var element = document.getElementById('caleandar');
